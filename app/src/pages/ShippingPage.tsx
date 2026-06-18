@@ -27,7 +27,7 @@ export function ShippingPage() {
             <div className="p-6 bg-white/30 rounded text-center">
               <Clock size={28} className="text-[#541F2B] mx-auto mb-4" />
               <h3 className="text-sm font-medium mb-2">Express Delivery</h3>
-              <p className="text-sm text-[#111111]/60">2-3 business days available at checkout for select cities.</p>
+              <p className="text-sm text-[#111111]/60">Ask about expedited delivery when BAAG confirms your COD request.</p>
             </div>
             <div className="p-6 bg-white/30 rounded text-center">
               <Globe size={28} className="text-[#541F2B] mx-auto mb-4" />
@@ -49,7 +49,8 @@ export function ShippingPage() {
                 and delivered within 4-7 business days depending on your location.
               </p>
               <p className="text-sm text-[#111111]/70 leading-relaxed">
-                Cash on delivery (COD) is available for most locations within India. A COD fee of ₹50 may apply.
+                Cash on delivery (COD) availability, delivery charges, and the expected delivery window are confirmed
+                manually on WhatsApp before your order is accepted.
               </p>
             </section>
 

@@ -33,17 +33,17 @@ export const faqData: FAQItem[] = [
   },
   {
     question: 'How long does delivery take?',
-    answer: 'Orders within India are typically delivered within 4–7 business days. Express shipping options are available at checkout. International delivery takes 10–20 business days depending on the destination. You will receive a tracking number once your order ships.',
+    answer: 'Delivery availability, charges, and timing depend on your location. BAAG will confirm these details with you on WhatsApp before accepting your COD order request.',
     category: 'Shipping',
   },
   {
     question: 'Do you offer cash on delivery?',
-    answer: 'Yes, we offer cash on delivery (COD) for orders within India. A small COD fee may apply. Free shipping is available on all orders above ₹1,999.',
+    answer: 'You can request cash on delivery through the order form or WhatsApp. BAAG will confirm COD eligibility, stock, delivery charges, and the final total before accepting the order.',
     category: 'Shipping',
   },
   {
     question: 'Do you ship internationally?',
-    answer: 'Yes, we ship to the United Kingdom, Canada, United States, Australia, and Europe. International shipping rates are calculated at checkout based on destination and order weight. All international orders are shipped with tracking.',
+    answer: 'Contact BAAG on WhatsApp with your country and postal code. We will confirm whether delivery is available and provide the applicable charges and timing before accepting the order.',
     category: 'Shipping',
   },
   {

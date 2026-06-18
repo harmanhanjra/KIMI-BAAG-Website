@@ -35,8 +35,8 @@ export function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-medium text-[#111111] mb-3">4. Orders and Payment</h2>
-              <p>We reserve the right to refuse any order you place with us. We may limit or cancel quantities purchased per person, per household, or per order. Payment must be received prior to our acceptance of an order.</p>
+              <h2 className="text-lg font-medium text-[#111111] mb-3">4. Order Requests and Cash on Delivery</h2>
+              <p>Submitting the website form or WhatsApp message is an order request, not an accepted order. BAAG will confirm product availability, delivery details, final total, and cash-on-delivery eligibility with you before accepting the order. No online payment is collected by this website.</p>
             </section>
 
             <section>

@@ -88,9 +88,8 @@ export function ReturnsPage() {
             <section>
               <h2 className="text-xl font-medium mb-4">Refund Process</h2>
               <p className="text-sm text-[#111111]/70 leading-relaxed">
-                Once we receive and inspect your return, we will process your refund within 5-7 business days.
-                Refunds will be issued to the original payment method. For COD orders, refunds will be processed
-                via bank transfer.
+                Returns and any eligible COD refund are reviewed manually by BAAG after the item is received and
+                inspected. We will confirm the approved refund method and timeline directly with you on WhatsApp.
               </p>
             </section>
 
