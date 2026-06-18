@@ -1,0 +1,301 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* BAAG Brand Colors */
+    --background: 37 33% 90%;
+    --foreground: 0 0% 7%;
+    --card: 37 33% 92%;
+    --card-foreground: 0 0% 7%;
+    --popover: 37 33% 92%;
+    --popover-foreground: 0 0% 7%;
+    --primary: 346 47% 22%;
+    --primary-foreground: 37 33% 90%;
+    --secondary: 37 15% 80%;
+    --secondary-foreground: 0 0% 7%;
+    --muted: 37 15% 85%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 37 15% 80%;
+    --accent-foreground: 0 0% 7%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 37 10% 80%;
+    --input: 37 10% 80%;
+    --ring: 346 47% 22%;
+    --radius: 0.25rem;
+    --baag-ink: #0D0B09;
+    --baag-coal: #15110F;
+    --baag-cream: #F1E9DC;
+    --baag-wheat: #D8C3A3;
+    --baag-gold: #B39152;
+    --baag-burgundy: #541F2B;
+    --baag-olive: #62624A;
+  }
+
+  body {
+    @apply bg-[#F1E9DC] text-[#111111];
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background:
+      radial-gradient(circle at top left, rgba(179, 145, 82, 0.14), transparent 30rem),
+      linear-gradient(180deg, #F6EFE4 0%, #F1E9DC 38%, #E8DDCC 100%);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  /* Selection styling */
+  ::selection {
+    background-color: #541F2B;
+    color: #F1E9DC;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #F1E9DC;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #11111130;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #11111150;
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Focus visible styling */
+  :focus-visible {
+    outline: 2px solid #541F2B;
+    outline-offset: 2px;
+  }
+
+  /* Hide scrollbar for horizontal scroll containers */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer utilities {
+  .baag-display {
+    font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+    letter-spacing: 0;
+  }
+
+  .baag-gurmukhi {
+    font-family: 'Noto Sans Gurmukhi', sans-serif;
+  }
+
+  .baag-container {
+    width: min(100% - 2rem, 80rem);
+    margin-inline: auto;
+  }
+
+  .baag-eyebrow {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .baag-button {
+    min-height: 3rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    padding: 0.875rem 1.25rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+    touch-action: manipulation;
+  }
+
+  .baag-button:hover {
+    transform: translateY(-1px);
+  }
+
+  .baag-button:active {
+    transform: translateY(0);
+  }
+
+  .baag-button-dark {
+    background: var(--baag-ink);
+    color: var(--baag-cream);
+  }
+
+  .baag-button-dark:hover {
+    background: var(--baag-burgundy);
+  }
+
+  .baag-button-light {
+    background: var(--baag-cream);
+    color: var(--baag-ink);
+  }
+
+  .baag-button-light:hover {
+    background: #fffaf2;
+  }
+
+  .baag-button-outline {
+    border: 1px solid currentColor;
+    color: inherit;
+  }
+
+  .baag-noise {
+    position: relative;
+  }
+
+  .baag-noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.16;
+    background-image:
+      linear-gradient(90deg, rgba(17, 17, 17, 0.06) 1px, transparent 1px),
+      linear-gradient(rgba(17, 17, 17, 0.05) 1px, transparent 1px);
+    background-size: 52px 52px;
+    mask-image: linear-gradient(to bottom, black, transparent 80%);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .baag-animated-hero {
+    background:
+      linear-gradient(120deg, rgba(84, 31, 43, 0.5), transparent 34%),
+      linear-gradient(240deg, rgba(98, 98, 74, 0.34), transparent 38%),
+      linear-gradient(180deg, rgba(179, 145, 82, 0.12), transparent 46%),
+      #0D0B09;
+  }
+
+  .baag-fabric-grid {
+    opacity: 0.4;
+    background-image:
+      linear-gradient(90deg, rgba(241, 233, 220, 0.055) 1px, transparent 1px),
+      linear-gradient(rgba(241, 233, 220, 0.04) 1px, transparent 1px),
+      repeating-linear-gradient(115deg, rgba(216, 195, 163, 0.055) 0 1px, transparent 1px 13px);
+    background-size: 64px 64px, 64px 64px, 100% 100%;
+    animation: baagGridDrift 18s linear infinite;
+  }
+
+  .baag-thread {
+    height: 1px;
+    transform-origin: center;
+    background: linear-gradient(90deg, transparent, rgba(216, 195, 163, 0.72), rgba(84, 31, 43, 0.74), transparent);
+    box-shadow: 0 0 24px rgba(179, 145, 82, 0.18);
+    animation: baagThreadFlow 6.5s ease-in-out infinite;
+  }
+
+  .baag-thread::after {
+    content: '';
+    position: absolute;
+    inset: -5px 18% auto;
+    height: 11px;
+    background: linear-gradient(90deg, transparent, rgba(241, 233, 220, 0.16), transparent);
+    filter: blur(5px);
+  }
+
+  .baag-kinetic-track {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 0.85;
+    animation: baagTypeMarquee 24s linear infinite;
+  }
+
+  @media (min-width: 768px) {
+    .baag-kinetic-track {
+      font-size: 8rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .baag-kinetic-track {
+      font-size: 11rem;
+    }
+  }
+
+  @keyframes baagGridDrift {
+    0% {
+      background-position: 0 0, 0 0, 0 0;
+    }
+    100% {
+      background-position: 64px 64px, -64px 64px, 0 0;
+    }
+  }
+
+  @keyframes baagThreadFlow {
+    0%,
+    100% {
+      opacity: 0.32;
+      transform: translateX(-2%) scaleX(0.9);
+    }
+    50% {
+      opacity: 0.82;
+      transform: translateX(4%) scaleX(1.08);
+    }
+  }
+
+  @keyframes baagTypeMarquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    .baag-fabric-grid,
+    .baag-thread,
+    .baag-kinetic-track {
+      animation: none !important;
+    }
+  }
+}
