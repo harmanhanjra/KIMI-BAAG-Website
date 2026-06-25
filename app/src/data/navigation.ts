@@ -42,7 +42,7 @@ export const footerNavigation = {
     { label: 'Terms & Conditions', href: '/policies/terms' },
   ],
   social: [
-    { label: 'Instagram', href: 'https://instagram.com/baag' },
+    { label: 'Instagram', href: 'https://instagram.com/baagoriginals' },
     { label: 'Pinterest', href: 'https://pinterest.com/baag' },
     { label: 'TikTok', href: 'https://tiktok.com/@baag' },
     { label: 'YouTube', href: 'https://youtube.com/baag' },

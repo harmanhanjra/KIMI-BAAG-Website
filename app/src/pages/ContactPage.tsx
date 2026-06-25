@@ -5,16 +5,33 @@ import { Mail, MessageCircle, MapPin, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const contactCategories = ['Order Support', 'Sizing Help', 'Returns', 'Collaboration', 'Wholesale', 'Press', 'General Enquiry'];
+const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || '2000sharmanpreet@gmail.com';
+const whatsappNumber = (import.meta.env.VITE_WHATSAPP_NUMBER || '917528966505').replace(/\D/g, '');
+const businessAddress = import.meta.env.VITE_BUSINESS_ADDRESS || '';
 
 export function ContactPage() {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [selectedCategory, setSelectedCategory] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormState('submitting');
-    // SHOPIFY/EMAIL SERVICE INTEGRATION POINT
-    setTimeout(() => setFormState('success'), 1000);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
+      });
+      if (!response.ok) throw new Error('Submission failed');
+      setFormState('success');
+      form.reset();
+      setSelectedCategory('');
+    } catch {
+      setFormState('error');
+    }
   };
 
   return (
@@ -39,7 +56,9 @@ export function ContactPage() {
                 <Mail size={20} className="text-[#541F2B] flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-sm font-medium mb-1">Email</h3>
-                  <p className="text-sm text-[#111111]/60">[YOUR_EMAIL]</p>
+                  <a className="text-sm text-[#111111]/60 transition-colors hover:text-[#541F2B]" href={`mailto:${contactEmail}`}>
+                    {contactEmail}
+                  </a>
                 </div>
               </motion.div>
 
@@ -47,7 +66,14 @@ export function ContactPage() {
                 <MessageCircle size={20} className="text-[#541F2B] flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-sm font-medium mb-1">WhatsApp</h3>
-                  <p className="text-sm text-[#111111]/60">[YOUR_WHATSAPP_NUMBER]</p>
+                  <a
+                    className="text-sm text-[#111111]/60 transition-colors hover:text-[#541F2B]"
+                    href={`https://wa.me/${whatsappNumber}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Chat with BAAG
+                  </a>
                 </div>
               </motion.div>
 
@@ -59,19 +85,15 @@ export function ContactPage() {
                 </div>
               </motion.div>
 
-              <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="flex gap-4">
-                <MapPin size={20} className="text-[#541F2B] flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-sm font-medium mb-1">Address</h3>
-                  <p className="text-sm text-[#111111]/60">[YOUR_BUSINESS_ADDRESS]</p>
-                </div>
-              </motion.div>
-
-              <div className="pt-6 border-t border-[#111111]/10">
-                <p className="text-xs text-[#111111]/50">
-                  Note: Replace the placeholders above with your actual contact details before launch.
-                </p>
-              </div>
+              {businessAddress && (
+                <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="flex gap-4">
+                  <MapPin size={20} className="text-[#541F2B] flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="text-sm font-medium mb-1">Address</h3>
+                    <p className="text-sm text-[#111111]/60">{businessAddress}</p>
+                  </div>
+                </motion.div>
+              )}
             </div>
 
             {/* Contact Form */}
@@ -85,32 +107,33 @@ export function ContactPage() {
                   <p className="text-[#111111]/60">We will get back to you within 24 hours.</p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form name="baag-contact" data-netlify="true" onSubmit={handleSubmit} className="space-y-5">
+                  <input type="hidden" name="form-name" value="baag-contact" />
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs tracking-[0.1em] uppercase text-[#111111]/60 mb-2">Name *</label>
-                      <input type="text" required className="w-full px-4 py-3 bg-white/50 border border-[#111111]/10 outline-none focus:border-[#541F2B] transition-colors text-sm" />
+                      <label htmlFor="contact-name" className="block text-xs tracking-[0.1em] uppercase text-[#111111]/60 mb-2">Name *</label>
+                      <input id="contact-name" name="name" type="text" required className="w-full px-4 py-3 bg-white/50 border border-[#111111]/10 outline-none focus:border-[#541F2B] transition-colors text-sm" />
                     </div>
                     <div>
-                      <label className="block text-xs tracking-[0.1em] uppercase text-[#111111]/60 mb-2">Email *</label>
-                      <input type="email" required className="w-full px-4 py-3 bg-white/50 border border-[#111111]/10 outline-none focus:border-[#541F2B] transition-colors text-sm" />
+                      <label htmlFor="contact-email" className="block text-xs tracking-[0.1em] uppercase text-[#111111]/60 mb-2">Email *</label>
+                      <input id="contact-email" name="email" type="email" required className="w-full px-4 py-3 bg-white/50 border border-[#111111]/10 outline-none focus:border-[#541F2B] transition-colors text-sm" />
                     </div>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs tracking-[0.1em] uppercase text-[#111111]/60 mb-2">Phone</label>
-                      <input type="tel" className="w-full px-4 py-3 bg-white/50 border border-[#111111]/10 outline-none focus:border-[#541F2B] transition-colors text-sm" />
+                      <label htmlFor="contact-phone" className="block text-xs tracking-[0.1em] uppercase text-[#111111]/60 mb-2">Phone</label>
+                      <input id="contact-phone" name="phone" type="tel" className="w-full px-4 py-3 bg-white/50 border border-[#111111]/10 outline-none focus:border-[#541F2B] transition-colors text-sm" />
                     </div>
                     <div>
-                      <label className="block text-xs tracking-[0.1em] uppercase text-[#111111]/60 mb-2">Order Number</label>
-                      <input type="text" className="w-full px-4 py-3 bg-white/50 border border-[#111111]/10 outline-none focus:border-[#541F2B] transition-colors text-sm" />
+                      <label htmlFor="contact-order" className="block text-xs tracking-[0.1em] uppercase text-[#111111]/60 mb-2">Order Number</label>
+                      <input id="contact-order" name="order_number" type="text" className="w-full px-4 py-3 bg-white/50 border border-[#111111]/10 outline-none focus:border-[#541F2B] transition-colors text-sm" />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs tracking-[0.1em] uppercase text-[#111111]/60 mb-2">Category *</label>
-                    <select required value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}
+                    <label htmlFor="contact-category" className="block text-xs tracking-[0.1em] uppercase text-[#111111]/60 mb-2">Category *</label>
+                    <select id="contact-category" name="category" required value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}
                       className="w-full px-4 py-3 bg-white/50 border border-[#111111]/10 outline-none focus:border-[#541F2B] transition-colors text-sm">
                       <option value="">Select a category</option>
                       {contactCategories.map((cat) => (<option key={cat} value={cat}>{cat}</option>))}
@@ -118,14 +141,19 @@ export function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs tracking-[0.1em] uppercase text-[#111111]/60 mb-2">Message *</label>
-                    <textarea required rows={5} className="w-full px-4 py-3 bg-white/50 border border-[#111111]/10 outline-none focus:border-[#541F2B] transition-colors text-sm resize-none" />
+                    <label htmlFor="contact-message" className="block text-xs tracking-[0.1em] uppercase text-[#111111]/60 mb-2">Message *</label>
+                    <textarea id="contact-message" name="message" required rows={5} className="w-full px-4 py-3 bg-white/50 border border-[#111111]/10 outline-none focus:border-[#541F2B] transition-colors text-sm resize-none" />
                   </div>
 
                   <button type="submit" disabled={formState === 'submitting'}
                     className="px-10 py-4 bg-[#111111] text-[#F1E9DC] text-xs tracking-[0.2em] uppercase hover:bg-[#541F2B] transition-colors disabled:opacity-50">
                     {formState === 'submitting' ? 'Sending...' : 'Send Message'}
                   </button>
+                  {formState === 'error' && (
+                    <p className="text-sm text-[#8A2338]" role="alert">
+                      We could not send that message. Please email us or use WhatsApp instead.
+                    </p>
+                  )}
                 </form>
               )}
             </div>

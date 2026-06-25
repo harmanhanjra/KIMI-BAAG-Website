@@ -128,10 +128,10 @@ export function ShopPage() {
                 {filteredProducts.length} products
               </p>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex w-full flex-wrap items-center gap-3 sm:w-auto sm:justify-end">
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className="flex items-center gap-2 px-4 py-2 border border-[#111111]/20 text-xs tracking-[0.15em] uppercase hover:border-[#111111] transition-colors"
+                className="flex min-h-11 items-center gap-2 border border-[#111111]/20 px-4 py-2 text-xs uppercase tracking-[0.15em] transition-colors hover:border-[#111111]"
               >
                 <SlidersHorizontal size={14} />
                 Filters
@@ -144,7 +144,8 @@ export function ShopPage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 border border-[#111111]/20 bg-transparent text-xs tracking-wide outline-none"
+                aria-label="Sort products"
+                className="min-h-11 min-w-0 flex-1 border border-[#111111]/20 bg-transparent px-3 py-2 text-xs tracking-wide outline-none sm:flex-none sm:px-4"
               >
                 {sortOptions.map((opt) => (
                   <option key={opt.value} value={opt.value}>
@@ -255,11 +256,12 @@ export function ShopPage() {
               }`}
             >
               {filteredProducts.map((product, index) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  index={index}
-                />
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    index={index}
+                    variant={viewMode}
+                  />
               ))}
             </div>
           )}

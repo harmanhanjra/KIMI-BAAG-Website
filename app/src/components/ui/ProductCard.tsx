@@ -11,9 +11,10 @@ import { motion } from 'framer-motion';
 interface ProductCardProps {
   product: Product;
   index?: number;
+  variant?: 'grid' | 'list';
 }
 
-export function ProductCard({ product, index = 0 }: ProductCardProps) {
+export function ProductCard({ product, index = 0, variant = 'grid' }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const { isInWishlist, toggleItem } = useWishlistStore();
   const addItem = useCartStore((s) => s.addItem);
@@ -36,8 +37,11 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Link to={`/products/${product.slug}`} className="block">
-        <div className="relative mb-4 overflow-hidden bg-[#E6DED0]">
+      <Link
+        to={`/products/${product.slug}`}
+        className={variant === 'list' ? 'block sm:grid sm:grid-cols-[minmax(13rem,18rem)_1fr] sm:items-center sm:gap-8' : 'block'}
+      >
+        <div className={`relative overflow-hidden bg-[#E6DED0] ${variant === 'list' ? 'mb-4 sm:mb-0' : 'mb-4'}`}>
           <div className="aspect-[4/5] p-3 sm:p-4">
             <img
               src={isHovered && product.images.back ? product.images.back : product.images.front}
@@ -83,7 +87,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             </button>
           </div>
 
-          <div className="absolute inset-x-0 bottom-0 translate-y-full p-3 transition-transform duration-300 group-hover:translate-y-0 group-focus-within:translate-y-0">
+          <div className="absolute inset-x-0 bottom-0 translate-y-0 p-3 transition-transform duration-300 md:translate-y-full md:group-hover:translate-y-0 md:group-focus-within:translate-y-0">
             <button
               onClick={handleQuickAdd}
               disabled={!defaultSize}
@@ -95,7 +99,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           </div>
         </div>
 
-        <div className="space-y-2">
+        <div className={`space-y-2 ${variant === 'list' ? 'sm:max-w-xl sm:py-6' : ''}`}>
           <div className="flex items-start justify-between gap-4">
             <div>
               <h3 className="text-sm font-semibold tracking-wide text-[#111111]">{product.name}</h3>

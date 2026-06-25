@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { SEO } from '@/components/SEO';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { getProductBySlug, getRelatedProducts } from '@/data/products';
@@ -24,6 +24,7 @@ type ProductImageKey = 'front' | 'back' | 'detail' | 'lifestyle';
 export function ProductPage() {
   const { slug } = useParams<{ slug: string }>();
   const product = getProductBySlug(slug || '');
+  const navigate = useNavigate();
   const addItem = useCartStore((s) => s.addItem);
   const { isInWishlist, toggleItem } = useWishlistStore();
 
@@ -31,6 +32,7 @@ export function ProductPage() {
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState<ProductImageKey>('front');
   const [openAccordion, setOpenAccordion] = useState<string | null>('details');
+  const [sizeError, setSizeError] = useState('');
 
   if (!product) {
     return (
@@ -57,20 +59,21 @@ export function ProductPage() {
 
   const handleAddToCart = () => {
     if (!selectedSize) {
-      alert('Please select a size');
+      setSizeError('Choose a size before adding this piece to your BAAG.');
       return;
     }
+    setSizeError('');
     addItem(product, selectedSize, quantity);
   };
 
   const handleBuyNow = () => {
     if (!selectedSize) {
-      alert('Please select a size');
+      setSizeError('Choose a size before continuing to checkout.');
       return;
     }
+    setSizeError('');
     addItem(product, selectedSize, quantity);
-    // SHOPIFY CHECKOUT INTEGRATION POINT
-    // window.location.href = shopifyCheckoutUrl;
+    navigate('/cart');
   };
 
   const accordionItems = [
@@ -149,7 +152,7 @@ export function ProductPage() {
                   transition={{ duration: 0.3 }}
                   src={product.images[activeImage] || product.images.front}
                   alt={`${product.name} - ${activeImage} view`}
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-contain p-4 sm:p-6"
                 />
               </div>
               <div className="grid grid-cols-4 gap-3">
@@ -165,7 +168,7 @@ export function ProductPage() {
                     <img
                       src={src}
                       alt={`${product.name} ${key} thumbnail`}
-                      className="w-full h-full object-cover"
+                      className="h-full w-full object-contain p-1"
                     />
                   </button>
                 ))}
@@ -275,7 +278,12 @@ export function ProductPage() {
                     return (
                       <button
                         key={size}
-                        onClick={() => inStock && setSelectedSize(size)}
+                        onClick={() => {
+                          if (inStock) {
+                            setSelectedSize(size);
+                            setSizeError('');
+                          }
+                        }}
                         disabled={!inStock}
                         className={`relative w-12 h-12 text-xs font-medium border transition-colors ${
                           selectedSize === size
@@ -300,6 +308,11 @@ export function ProductPage() {
                       : `${product.inventory[selectedSize]} in stock`}
                   </p>
                 )}
+                {sizeError && (
+                  <p className="mt-3 text-sm font-medium text-[#8A2338]" role="alert">
+                    {sizeError}
+                  </p>
+                )}
               </div>
 
               {/* Quantity */}
@@ -319,7 +332,10 @@ export function ProductPage() {
                     {quantity}
                   </span>
                   <button
-                    onClick={() => setQuantity(quantity + 1)}
+                    onClick={() => {
+                      const maxQuantity = selectedSize ? product.inventory[selectedSize] : 10;
+                      setQuantity(Math.min(quantity + 1, maxQuantity));
+                    }}
                     className="p-3 hover:bg-[#111111]/5 transition-colors"
                     aria-label="Increase quantity"
                   >
@@ -345,7 +361,7 @@ export function ProductPage() {
               </div>
 
               {/* Trust Badges */}
-              <div className="flex items-center gap-6 py-4 border-t border-[#111111]/10">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[#111111]/10 py-4">
                 <div className="flex items-center gap-2 text-xs text-[#111111]/60">
                   <Truck size={16} />
                   <span>Free shipping over ₹1,999</span>

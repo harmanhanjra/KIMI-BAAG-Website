@@ -63,7 +63,7 @@ export const faqData: FAQItem[] = [
   },
   {
     question: 'How can I contact BAAG?',
-    answer: 'You can reach us via email at [YOUR_EMAIL], through WhatsApp at [YOUR_WHATSAPP_NUMBER], or by filling out the contact form on our website. Our customer service team typically responds within 24 hours.',
+    answer: `You can reach us via email at ${import.meta.env.VITE_CONTACT_EMAIL || '2000sharmanpreet@gmail.com'}, through WhatsApp, or by filling out the contact form on our website. Our customer service team typically responds within 24 hours.`,
     category: 'General',
   },
 ];

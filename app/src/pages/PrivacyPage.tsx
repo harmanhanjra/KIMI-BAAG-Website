@@ -63,7 +63,12 @@ export function PrivacyPage() {
 
             <section>
               <h2 className="text-lg font-medium text-[#111111] mb-3">7. Contact Us</h2>
-              <p>If you have any questions about this Privacy Policy, please contact us at [YOUR_EMAIL].</p>
+              <p>
+                If you have any questions about this Privacy Policy, please contact us at{' '}
+                <a className="text-[#541F2B] underline" href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL || '2000sharmanpreet@gmail.com'}`}>
+                  {import.meta.env.VITE_CONTACT_EMAIL || '2000sharmanpreet@gmail.com'}
+                </a>.
+              </p>
             </section>
 
             <div className="bg-[#541F2B]/5 p-6 rounded mt-8">

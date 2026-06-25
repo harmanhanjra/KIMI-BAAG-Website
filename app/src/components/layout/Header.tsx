@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Search, Heart, ShoppingBag, Menu, X } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
 import { useWishlistStore } from '@/store/wishlistStore';
@@ -13,6 +13,7 @@ export function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const cartItemCount = useCartStore((s) => s.getItemCount());
   const openCart = useCartStore((s) => s.openCart);
   const wishlistCount = useWishlistStore((s) => s.items.length);
@@ -25,18 +26,13 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    setIsMobileNavOpen(false);
-    setIsSearchOpen(false);
-  }, [location]);
-
   const isHomePage = location.pathname === '/';
   const showTransparent = isHomePage && !isScrolled;
 
   return (
     <>
       <header
-        style={{ top: 'var(--announcement-height, 52px)' }}
+        style={{ top: 'var(--announcement-height, 40px)' }}
         className={`fixed left-0 right-0 z-50 transition-all duration-500 ${
           showTransparent
             ? 'bg-transparent'
@@ -62,6 +58,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   to={item.href}
+                  aria-current={location.pathname === item.href ? 'page' : undefined}
                   className={`text-xs tracking-[0.15em] uppercase font-medium transition-colors hover:text-[#541F2B] ${
                     showTransparent ? 'text-white/90' : 'text-[#111111]'
                   }`}
@@ -87,6 +84,7 @@ export function Header() {
                   <Link
                     key={item.href}
                     to={item.href}
+                    aria-current={location.pathname === item.href ? 'page' : undefined}
                     className={`text-xs tracking-[0.15em] uppercase font-medium transition-colors hover:text-[#541F2B] ${
                       showTransparent ? 'text-white/90' : 'text-[#111111]'
                     }`}
@@ -178,7 +176,8 @@ export function Header() {
                   const form = e.target as HTMLFormElement;
                   const input = form.querySelector('input') as HTMLInputElement;
                   if (input.value.trim()) {
-                    window.location.href = `/search?q=${encodeURIComponent(input.value.trim())}`;
+                    setIsSearchOpen(false);
+                    navigate(`/search?q=${encodeURIComponent(input.value.trim())}`);
                   }
                 }}
               >
@@ -200,6 +199,7 @@ export function Header() {
                       <Link
                         key={term}
                         to={`/search?q=${encodeURIComponent(term)}`}
+                        onClick={() => setIsSearchOpen(false)}
                         className="px-4 py-2 bg-[#111111]/5 hover:bg-[#111111]/10 rounded-full text-sm transition-colors"
                       >
                         {term}

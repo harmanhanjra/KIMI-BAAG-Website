@@ -11,9 +11,17 @@ interface SEOProps {
 }
 
 export function SEO({ title, description, image, url, type, keywords }: SEOProps) {
-  const seo = generateSEOMeta({ title, description, image, url, type, keywords });
+  const keywordKey = keywords?.join(',') ?? '';
 
   useEffect(() => {
+    const seo = generateSEOMeta({
+      title,
+      description,
+      image,
+      url,
+      type,
+      keywords: keywordKey ? keywordKey.split(',') : undefined,
+    });
     document.title = seo.title;
 
     // Remove existing meta tags we manage
@@ -34,7 +42,7 @@ export function SEO({ title, description, image, url, type, keywords }: SEOProps
       const metaToRemove = document.querySelectorAll('meta[data-seo]');
       metaToRemove.forEach((el) => el.remove());
     };
-  }, [seo.title, description, image, url, type, keywords?.join(',')]);
+  }, [title, description, image, url, type, keywordKey]);
 
   return null;
 }

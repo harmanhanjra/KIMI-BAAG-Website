@@ -10,7 +10,7 @@ export function AnnouncementBar() {
   useEffect(() => {
     document.documentElement.style.setProperty(
       '--announcement-height',
-      isVisible ? '52px' : '0px'
+      isVisible ? '40px' : '0px'
     );
 
     return () => {
