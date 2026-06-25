@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { assetPath } from '@/lib/asset';
 
 const productDetails = ['280 GSM cotton', 'Antique gold embroidery', 'Oversized drop shoulder'];
 
@@ -21,7 +22,7 @@ export function FeaturedProduct() {
           <div className="grid grid-cols-[0.72fr_0.42fr] items-end gap-3 sm:gap-5">
             <div className="aspect-[3/4] overflow-hidden">
               <img
-                src="/images/products/chardi-kala-front.png"
+                src={assetPath('images/products/chardi-kala-front.png')}
                 alt="CHARDI KALA front view"
                 className="h-full w-full object-contain bg-[#E6DED0] p-5"
                 loading="lazy"
@@ -30,7 +31,7 @@ export function FeaturedProduct() {
             <div className="space-y-3">
               <div className="aspect-[3/4] overflow-hidden">
                 <img
-                  src="/images/products/chardi-kala-back.png"
+                  src={assetPath('images/products/chardi-kala-back.png')}
                   alt="CHARDI KALA back view"
                   className="h-full w-full object-contain bg-[#E6DED0] p-4"
                   loading="lazy"

@@ -1,4 +1,5 @@
 import { SEO } from '@/components/SEO';
+import { assetPath } from '@/lib/asset';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
@@ -20,7 +21,7 @@ export function StoryPage() {
       <main className="bg-[#F1E9DC] min-h-screen pt-20">
         {/* Hero */}
         <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
-          <img src="/images/story/punjab-landscape.jpg" alt="Punjab at golden hour" className="w-full h-full object-cover" />
+          <img src={assetPath('images/story/punjab-landscape.jpg')} alt="Punjab at golden hour" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           <div className="absolute inset-0 flex items-end pb-16 px-4 sm:px-6">
             <div className="max-w-7xl mx-auto w-full">

@@ -1,4 +1,5 @@
 import type { Product } from '@/types';
+import { assetPath } from '@/lib/asset';
 
 export const products: Product[] = [
   {
@@ -20,10 +21,10 @@ export const products: Product[] = [
     collection: 'drop-001',
     category: 't-shirts',
     images: {
-      front: '/images/products/chardi-kala-front.png',
-      back: '/images/products/chardi-kala-back.png',
-      detail: '/images/lookbook/detail-1.jpg',
-      lifestyle: '/images/lookbook/punjab-1.jpg',
+      front: assetPath('images/products/chardi-kala-front.png'),
+      back: assetPath('images/products/chardi-kala-back.png'),
+      detail: assetPath('images/lookbook/detail-1.jpg'),
+      lifestyle: assetPath('images/lookbook/punjab-1.jpg'),
     },
     rating: 4.9,
     reviewCount: 47,
@@ -50,10 +51,10 @@ export const products: Product[] = [
     collection: 'drop-001',
     category: 't-shirts',
     images: {
-      front: '/images/products/punjabi-rooh-front.png',
-      back: '/images/products/punjabi-rooh-back.png',
-      detail: '/images/lookbook/detail-2.jpg',
-      lifestyle: '/images/lookbook/street-1.jpg',
+      front: assetPath('images/products/punjabi-rooh-front.png'),
+      back: assetPath('images/products/punjabi-rooh-back.png'),
+      detail: assetPath('images/lookbook/detail-2.jpg'),
+      lifestyle: assetPath('images/lookbook/street-1.jpg'),
     },
     rating: 4.8,
     reviewCount: 38,
@@ -79,10 +80,10 @@ export const products: Product[] = [
     collection: 'drop-001',
     category: 't-shirts',
     images: {
-      front: '/images/products/baag-signature-front.png',
-      back: '/images/products/baag-signature-back.png',
-      detail: '/images/lookbook/detail-1.jpg',
-      lifestyle: '/images/lookbook/street-2.jpg',
+      front: assetPath('images/products/baag-signature-front.png'),
+      back: assetPath('images/products/baag-signature-back.png'),
+      detail: assetPath('images/lookbook/detail-1.jpg'),
+      lifestyle: assetPath('images/lookbook/street-2.jpg'),
     },
     rating: 4.9,
     reviewCount: 62,
@@ -109,10 +110,10 @@ export const products: Product[] = [
     collection: 'drop-001',
     category: 't-shirts',
     images: {
-      front: '/images/products/mitti-front.png',
-      back: '/images/products/mitti-back.png',
-      detail: '/images/lookbook/detail-2.jpg',
-      lifestyle: '/images/lookbook/punjab-1.jpg',
+      front: assetPath('images/products/mitti-front.png'),
+      back: assetPath('images/products/mitti-back.png'),
+      detail: assetPath('images/lookbook/detail-2.jpg'),
+      lifestyle: assetPath('images/lookbook/punjab-1.jpg'),
     },
     rating: 4.7,
     reviewCount: 29,
@@ -138,10 +139,10 @@ export const products: Product[] = [
     collection: 'drop-001',
     category: 't-shirts',
     images: {
-      front: '/images/products/sher-front.png',
-      back: '/images/products/sher-back.png',
-      detail: '/images/lookbook/detail-1.jpg',
-      lifestyle: '/images/lookbook/after-dark-1.jpg',
+      front: assetPath('images/products/sher-front.png'),
+      back: assetPath('images/products/sher-back.png'),
+      detail: assetPath('images/lookbook/detail-1.jpg'),
+      lifestyle: assetPath('images/lookbook/after-dark-1.jpg'),
     },
     rating: 5.0,
     reviewCount: 23,

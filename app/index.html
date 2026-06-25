@@ -13,20 +13,32 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="BAAG | Rooted in Punjab. Built for the World." />
     <meta property="og:description" content="Premium Punjabi streetwear. Heavyweight oversized t-shirts and hoodies designed with cultural soul and modern ambition." />
-    <meta property="og:image" content="/images/hero/baag-drop-001.jpg" />
-    <meta property="og:url" content="https://baagofficial.com" />
+    <meta property="og:image" content="https://harmanhanjra.github.io/KIMI-BAAG-Website/images/hero/baag-drop-001.jpg" />
+    <meta property="og:url" content="https://harmanhanjra.github.io/KIMI-BAAG-Website/" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="BAAG | Rooted in Punjab. Built for the World." />
     <meta name="twitter:description" content="Premium Punjabi streetwear. Heavyweight oversized t-shirts and hoodies designed with cultural soul and modern ambition." />
-    <meta name="twitter:image" content="/images/hero/baag-drop-001.jpg" />
+    <meta name="twitter:image" content="https://harmanhanjra.github.io/KIMI-BAAG-Website/images/hero/baag-drop-001.jpg" />
 
     <!-- Preconnect to fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <title>BAAG - Rooted in Punjab. Built for the World.</title>
+
+    <script>
+      (function restoreGitHubPagesRoute() {
+        const params = new URLSearchParams(window.location.search);
+        const route = params.get('p');
+        if (!route) return;
+
+        const query = params.get('q');
+        const cleanUrl = `${window.location.pathname.replace(/\/$/, '')}${route}${query ? `?${query}` : ''}${window.location.hash}`;
+        window.history.replaceState(null, '', cleanUrl);
+      })();
+    </script>
 
     <style>
       /* Critical CSS for initial render */

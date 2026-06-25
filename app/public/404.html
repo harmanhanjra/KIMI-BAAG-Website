@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>BAAG</title>
+    <script>
+      const segmentCount = 1;
+      const locationPath = window.location;
+      const route = locationPath.pathname
+        .split('/')
+        .slice(1 + segmentCount)
+        .join('/');
+      const repositoryBase = locationPath.pathname
+        .split('/')
+        .slice(0, 1 + segmentCount)
+        .join('/');
+
+      window.location.replace(
+        `${locationPath.origin}${repositoryBase}/?p=/${route}${locationPath.search ? `&q=${encodeURIComponent(locationPath.search.slice(1))}` : ''}${locationPath.hash}`
+      );
+    </script>
+  </head>
+  <body></body>
+</html>

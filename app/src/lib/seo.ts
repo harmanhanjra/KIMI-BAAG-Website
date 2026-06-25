@@ -1,3 +1,10 @@
+import { assetPath } from '@/lib/asset';
+
+const siteUrl = (
+  import.meta.env.VITE_SITE_URL ||
+  'https://harmanhanjra.github.io/KIMI-BAAG-Website'
+).replace(/\/$/, '');
+
 interface SEOProps {
   title: string;
   description: string;
@@ -11,8 +18,8 @@ export const defaultSEO = {
   title: 'BAAG | Rooted in Punjab. Built for the World.',
   description:
     'Premium Punjabi streetwear. Heavyweight oversized t-shirts and hoodies designed with cultural soul and modern ambition. DROP 001 now live.',
-  image: '/images/hero/baag-drop-001.jpg',
-  url: 'https://baagofficial.com',
+  image: assetPath('images/hero/baag-drop-001.jpg'),
+  url: siteUrl,
   type: 'website',
   keywords: [
     'Punjabi streetwear brand',
@@ -78,7 +85,7 @@ export const generateProductSchema = (product: {
       priceCurrency: product.currency || 'INR',
       price: product.price,
       availability: product.availability || 'https://schema.org/InStock',
-      url: `${defaultSEO.url}/products/${product.name.toLowerCase().replace(/\s+/g, '-')}`,
+      url: `${siteUrl}/products/${product.name.toLowerCase().replace(/\s+/g, '-')}`,
     },
   };
 };
@@ -90,7 +97,7 @@ export const generateOrganizationSchema = () => {
     name: 'BAAG',
     description: 'Premium Punjabi streetwear. Rooted in Punjab. Built for the World.',
     url: defaultSEO.url,
-    logo: `${defaultSEO.url}/logo.png`,
+    logo: `${siteUrl}${assetPath('images/hero/baag-drop-001.jpg')}`,
     sameAs: [
       'https://instagram.com/baag',
       'https://tiktok.com/@baag',

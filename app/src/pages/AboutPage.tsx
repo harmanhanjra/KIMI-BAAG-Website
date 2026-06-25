@@ -2,6 +2,7 @@ import { SEO } from '@/components/SEO';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { assetPath } from '@/lib/asset';
 
 const values = [
   {
@@ -152,7 +153,7 @@ export function AboutPage() {
             <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
               <div>
                 <img
-                  src="/images/story/punjab-landscape.jpg"
+                  src={assetPath('images/story/punjab-landscape.jpg')}
                   alt="Punjab landscape"
                   className="aspect-video object-cover rounded mb-6"
                   loading="lazy"
@@ -172,7 +173,7 @@ export function AboutPage() {
               </div>
               <div>
                 <img
-                  src="/images/lookbook/detail-1.jpg"
+                  src={assetPath('images/lookbook/detail-1.jpg')}
                   alt="Craft and embroidery detail"
                   className="aspect-video object-cover rounded mb-6"
                   loading="lazy"
@@ -191,7 +192,7 @@ export function AboutPage() {
               </div>
               <div>
                 <img
-                  src="/images/lookbook/street-2.jpg"
+                  src={assetPath('images/lookbook/street-2.jpg')}
                   alt="Modern ambition"
                   className="aspect-video object-cover rounded mb-6"
                   loading="lazy"
@@ -211,7 +212,7 @@ export function AboutPage() {
               </div>
               <div>
                 <img
-                  src="/images/lookbook/studio-1.jpg"
+                  src={assetPath('images/lookbook/studio-1.jpg')}
                   alt="Limited drops"
                   className="aspect-video object-cover rounded mb-6"
                   loading="lazy"

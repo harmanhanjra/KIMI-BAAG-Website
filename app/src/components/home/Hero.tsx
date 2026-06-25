@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
+import { assetPath } from '@/lib/asset';
 
 const threads = [
   'top-[12%] left-[-12%] w-[62%] rotate-[8deg] delay-0',
@@ -104,7 +105,7 @@ export function Hero() {
               />
               <div className="aspect-[4/5] bg-[#E6DED0] p-5 sm:p-6">
                 <img
-                  src="/images/products/chardi-kala-front.png"
+                  src={assetPath('images/products/chardi-kala-front.png')}
                   alt="Chardi Kala BAAG t-shirt"
                   className="h-full w-full object-contain"
                 />
